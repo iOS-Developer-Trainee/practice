@@ -8,25 +8,37 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var testImage: UIImageView!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.backgroundColor = .white
+        testImage.image = nil
+    }
 
-  @IBOutlet weak var testImage: UIImageView!
-  
-  override func prepareForReuse() {
-    super.prepareForReuse()
-    self.backgroundColor = .white
-    testImage.image = nil
-  }
-  
-  func loadImage(url: URL, indexPath: IndexPath) {
-    URLSession.shared.dataTask(with: url) { data, response, error in
-      guard let data = data else { return}
-      
-      DispatchQueue.global().async {
-        let image = UIImage(data: data)
-        DispatchQueue.main.async { [self] in
-          testImage.image = image
+    func loadImage(url: URL, indexPath: IndexPath) {
+        let text = self.textLabel?.text
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            let image = UIImage(data: data)
+            DispatchQueue.main.async { [weak self] in
+                if let currentText = self?.textLabel?.text, currentText == text {
+                    do {
+                        try self?.checkImage(image: image)
+                    } catch {
+                        print("이미지 로딩 실패")
+                    }
+                }
+            }
+        }.resume()
+    }
+    
+    func checkImage(image: UIImage?) throws -> UIImage {
+        guard let image = image else {
+            throw NetworkError.doNotLoadImage
         }
-      }
-    }.resume()
-  }
+        testImage.image = image
+        return image
+    }
 }
