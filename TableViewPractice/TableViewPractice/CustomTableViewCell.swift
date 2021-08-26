@@ -17,7 +17,7 @@ class CustomTableViewCell: UITableViewCell {
         tableViewCellImage.image = nil
     }
 
-    func loadImage(url: URL, indexPath: IndexPath) {
+    func loadNetworkImage(url: URL) {
         let text = self.textLabel?.text
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {

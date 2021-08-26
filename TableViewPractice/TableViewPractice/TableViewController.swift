@@ -49,7 +49,7 @@ class TableViewController: UITableViewController {
         
         if indexPath.row <= two {
             guard let imageURL = URL(string: images[indexPath.row]) else { fatalError() }
-            cell.loadImage(url: imageURL, indexPath: indexPath)
+            cell.loadNetworkImage(url: imageURL)
         }
         return cell
     }
