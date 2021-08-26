@@ -19,6 +19,9 @@ class TableViewController: UITableViewController {
     let images = ["https://wallpaperaccess.com/download/europe-4k-1369012",
                   "https://wallpaperaccess.com/download/europe-4k-1318341",
                   "https://wallpaperaccess.com/download/europe-4k-1379801"]
+    let ten = 10
+    let two = 2
+    let three = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +30,11 @@ class TableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return ten
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section + 2
+        return section + two
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,11 +43,11 @@ class TableViewController: UITableViewController {
         
         cell.textLabel?.text = "\(indexPath.section)행 \(indexPath.row)줄"
         
-        if indexPath.row == 3 {
+        if indexPath.row == three {
             cell.backgroundColor = .red
         }
         
-        if indexPath.row <= 2 {
+        if indexPath.row <= two {
             guard let imageURL = URL(string: images[indexPath.row]) else { fatalError() }
             cell.loadImage(url: imageURL, indexPath: indexPath)
         }
