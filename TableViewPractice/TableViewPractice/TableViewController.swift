@@ -7,13 +7,6 @@
 
 import UIKit
 
-enum NetworkError: String, Error {
-    case doNotLoadImage = "이미지 로딩 실패"
-    
-    var description: String {
-        return rawValue
-    }
-}
 class TableViewController: UITableViewController {
     
     let images = ["https://wallpaperaccess.com/download/europe-4k-1369012",
