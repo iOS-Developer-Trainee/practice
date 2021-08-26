@@ -27,13 +27,10 @@ class CustomTableViewCell: UITableViewCell {
             var image = UIImage(data: data)
             do {
                 image = try self.checkNetworkImage(image: image)
+            } catch let error as NetworkError {
+                print("error = \(error.description)")
             } catch {
-                switch error {
-                case NetworkError.doNotLoadImage:
-                    print("이미지로딩 에러")
-                default:
-                    print("이유를 알 수 없는 에러")
-                }
+                print("unowned error")
             }
             DispatchQueue.main.async { [weak self] in
                 if let currentText = self?.textLabel?.text, currentText == text {
