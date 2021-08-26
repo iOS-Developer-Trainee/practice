@@ -24,19 +24,20 @@ class CustomTableViewCell: UITableViewCell {
                 print("data가 없습니다.")
                 return
             }
-            let image = UIImage(data: data)
+            var image = UIImage(data: data)
+            do {
+                image = try self.checkNetworkImage(image: image)
+            } catch {
+                switch error {
+                case NetworkError.doNotLoadImage:
+                    print("이미지로딩 에러")
+                default:
+                    print("이유를 알 수 없는 에러")
+                }
+            }
             DispatchQueue.main.async { [weak self] in
                 if let currentText = self?.textLabel?.text, currentText == text {
-                    do {
-                        try self?.checkNetworkImage(image: image)
-                    } catch {
-                        switch error {
-                        case NetworkError.doNotLoadImage:
-                            print("이미지로딩 에러")
-                        default:
-                            print("이유를 알 수 없는 에러")
-                        }
-                    }
+                    self?.tableViewCellImage.image = image
                 }
             }
         }.resume()
@@ -47,7 +48,6 @@ class CustomTableViewCell: UITableViewCell {
         guard let image = image else {
             throw NetworkError.doNotLoadImage
         }
-        tableViewCellImage.image = image
         return image
     }
 }
