@@ -23,10 +23,6 @@ class TableViewController: UITableViewController {
     let two = 2
     let three = 3
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {

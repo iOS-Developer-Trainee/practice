@@ -28,7 +28,7 @@ class CustomTableViewCell: UITableViewCell {
             DispatchQueue.main.async { [weak self] in
                 if let currentText = self?.textLabel?.text, currentText == text {
                     do {
-                        try self?.checkImage(image: image)
+                        try self?.checkNetworkImage(image: image)
                     } catch {
                         switch error {
                         case NetworkError.doNotLoadImage:
@@ -43,7 +43,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @discardableResult
-    func checkImage(image: UIImage?) throws -> UIImage {
+    private func checkNetworkImage(image: UIImage?) throws -> UIImage {
         guard let image = image else {
             throw NetworkError.doNotLoadImage
         }
