@@ -20,7 +20,10 @@ class CustomTableViewCell: UITableViewCell {
     func loadImage(url: URL, indexPath: IndexPath) {
         let text = self.textLabel?.text
         URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
+            guard let data = data else {
+                print("data가 없습니다.")
+                return
+            }
             let image = UIImage(data: data)
             DispatchQueue.main.async { [weak self] in
                 if let currentText = self?.textLabel?.text, currentText == text {
