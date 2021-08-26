@@ -11,7 +11,7 @@ enum NetworkError: String, Error {
     case doNotLoadImage = "이미지 로딩 실패"
     
     var description: String {
-        return self.rawValue
+        return rawValue
     }
 }
 class TableViewController: UITableViewController {

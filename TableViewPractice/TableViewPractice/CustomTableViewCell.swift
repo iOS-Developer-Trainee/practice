@@ -9,12 +9,12 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var testImage: UIImageView!
+    @IBOutlet weak var tableViewCellImage: UIImageView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.backgroundColor = .white
-        testImage.image = nil
+        backgroundColor = .white
+        tableViewCellImage.image = nil
     }
 
     func loadImage(url: URL, indexPath: IndexPath) {
@@ -44,7 +44,7 @@ class CustomTableViewCell: UITableViewCell {
         guard let image = image else {
             throw NetworkError.doNotLoadImage
         }
-        testImage.image = image
+        tableViewCellImage.image = image
         return image
     }
 }
