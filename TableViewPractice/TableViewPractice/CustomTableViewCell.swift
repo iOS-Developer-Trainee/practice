@@ -27,13 +27,19 @@ class CustomTableViewCell: UITableViewCell {
                     do {
                         try self?.checkImage(image: image)
                     } catch {
-                        print("이미지 로딩 실패")
+                        switch error {
+                        case NetworkError.doNotLoadImage:
+                            print("이미지로딩 에러")
+                        default:
+                            print("이유를 알 수 없는 에러")
+                        }
                     }
                 }
             }
         }.resume()
     }
     
+    @discardableResult
     func checkImage(image: UIImage?) throws -> UIImage {
         guard let image = image else {
             throw NetworkError.doNotLoadImage
