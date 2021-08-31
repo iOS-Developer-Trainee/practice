@@ -8,25 +8,43 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var tableViewCellImage: UIImageView!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        backgroundColor = .white
+        tableViewCellImage.image = nil
+    }
 
-  @IBOutlet weak var testImage: UIImageView!
-  
-  override func prepareForReuse() {
-    super.prepareForReuse()
-    self.backgroundColor = .white
-    testImage.image = nil
-  }
-  
-  func loadImage(url: URL, indexPath: IndexPath) {
-    URLSession.shared.dataTask(with: url) { data, response, error in
-      guard let data = data else { return}
-      
-      DispatchQueue.global().async {
-        let image = UIImage(data: data)
-        DispatchQueue.main.async { [self] in
-          testImage.image = image
+    func loadNetworkImage(url: URL) {
+        let text = self.textLabel?.text
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                print("data가 없습니다.")
+                return
+            }
+            var image = UIImage(data: data)
+            do {
+                image = try self.checkNetworkImage(image: image)
+            } catch let error as NetworkError {
+                print("error = \(error.description)")
+            } catch {
+                print("unowned error")
+            }
+            DispatchQueue.main.async { [weak self] in
+                if let currentText = self?.textLabel?.text, currentText == text {
+                    self?.tableViewCellImage.image = image
+                }
+            }
+        }.resume()
+    }
+    
+    @discardableResult
+    private func checkNetworkImage(image: UIImage?) throws -> UIImage {
+        guard let image = image else {
+            throw NetworkError.doNotLoadImage
         }
-      }
-    }.resume()
-  }
+        return image
+    }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75A08AFF26D72E770075452B /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A08AFE26D72E770075452B /* Error.swift */; };
 		75CE809926C49E3900B8104C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CE809826C49E3900B8104C /* AppDelegate.swift */; };
 		75CE809B26C49E3900B8104C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CE809A26C49E3900B8104C /* SceneDelegate.swift */; };
 		75CE809D26C49E3900B8104C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CE809C26C49E3900B8104C /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		75A08AFE26D72E770075452B /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		75CE809526C49E3900B8104C /* TableViewPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CE809826C49E3900B8104C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75CE809A26C49E3900B8104C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				75CE80A626C49E3C00B8104C /* Info.plist */,
 				75CE80AC26C4A29300B8104C /* TableViewController.swift */,
 				75CE80AE26C4C8C700B8104C /* CustomTableViewCell.swift */,
+				75A08AFE26D72E770075452B /* Error.swift */,
 			);
 			path = TableViewPractice;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				75CE80AF26C4C8C700B8104C /* CustomTableViewCell.swift in Sources */,
 				75CE809926C49E3900B8104C /* AppDelegate.swift in Sources */,
 				75CE809B26C49E3900B8104C /* SceneDelegate.swift in Sources */,
+				75A08AFF26D72E770075452B /* Error.swift in Sources */,
 				75CE80AD26C4A29300B8104C /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
